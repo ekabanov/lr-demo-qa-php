@@ -1,0 +1,5 @@
+driver: com.mysql.jdbc.Driver
+classpath: connectors/mysql-connector-java-5.1.23-bin.jar
+url: jdbc:mysql://localhost/qa
+username: root
+changeLogFile: app/protected/migrations/master.xml
