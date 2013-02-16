@@ -4,14 +4,11 @@ class UserIdentity extends CUserIdentity
 {
   private $_id;
 
-  public function __construct($username, $password)
+  public function __construct($username, $password = '')
   {
-    if (is_int($username)) {
-      $this->_id = $username;
-    } else {
-      $this->username = $username;
-      $this->password = $password;
-    }
+    $this->_id = $username;
+    $this->username = $username;
+    $this->password = $password;
   }
 
   public function authenticate()
