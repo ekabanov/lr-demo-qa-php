@@ -84,7 +84,7 @@ class QuestionsController extends Controller
       throw new CHttpException(404, "Question not found.");
 
     if (Yii::app()->user->isGuest)
-      $hasAnswered = false;
+      $hasAnswered = true;
     else
       $hasAnswered = Answer::model()->countByAttributes(array('question_id' => $model->id, 'user_id' => Yii::app()->user->id));
 
