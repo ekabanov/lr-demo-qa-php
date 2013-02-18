@@ -12,9 +12,7 @@
         <constraints nullable="false" primaryKey="true"/>
       </column>
       <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
-      <column name="email" type="varchar(255)">
-        <constraints nullable="false" unique="true"/>
-      </column>
+      <column name="email" type="varchar(255)"/>
       <column name="name" type="varchar(255)">
         <constraints nullable="false"/>
       </column>
@@ -36,6 +34,7 @@
         <constraints nullable="false"/>
       </column>
       <column name="user_id" type="bigint"/>
+      <column name="answer_id" type="bigint"/>
     </createTable>
     <addForeignKeyConstraint baseTableName="questions" baseColumnNames="user_id" constraintName="fk_questions_user"
                              referencedTableName="users" referencedColumnNames="id" onDelete="SET NULL"/>
@@ -57,6 +56,8 @@
                              referencedTableName="users" referencedColumnNames="id" onDelete="SET NULL"/>
     <addForeignKeyConstraint baseTableName="answers" baseColumnNames="question_id" constraintName="fk_answers_question"
                              referencedTableName="questions" referencedColumnNames="id" onDelete="CASCADE"/>
+    <addForeignKeyConstraint baseTableName="questions" baseColumnNames="answer_id" constraintName="fk_questions_answer"
+                             referencedTableName="answers" referencedColumnNames="id" onDelete="SET NULL"/>
   </changeSet>
 
 </databaseChangeLog>
