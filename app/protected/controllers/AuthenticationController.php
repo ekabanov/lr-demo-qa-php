@@ -65,8 +65,8 @@ class AuthenticationController extends CController
       $this->redirect(Yii::app()->user->returnUrl);
 
     } catch (FacebookApiException $e) {
-      $this->redirect('login');
     }
+    $this->redirect('login');
   }
 
   public function actionLogout()

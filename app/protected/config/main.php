@@ -24,10 +24,15 @@ return array(
       'rules' => array(
         'users/login' => 'authentication/login',
         'users/logout' => 'authentication/logout',
+        'questions' => array('questions/index'),
+        'questions/unanswered' => array('questions/index', 'defaultParams' => array('unanswered' => true)),
         '<controller:\w+>/<id:\d+>' => '<controller>/view',
         '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
         '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
       ),
+    ),
+    'format'=>array(
+      'class'=>'application.extensions.timeago.TimeagoFormatter',
     ),
     'db' => array(
       'connectionString' => 'mysql:host=localhost;dbname=qa',

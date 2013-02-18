@@ -4,6 +4,14 @@ class WebUser extends CWebUser
 {
   private $model = null;
 
+  public function init()
+  {
+    parent::init();
+    if ($this->getModel() == null)
+      parent::logout();
+  }
+
+
   public function getModel()
   {
     if (!isset($this->id)) $this->model = new User;
