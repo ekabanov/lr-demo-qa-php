@@ -16,6 +16,10 @@
   <?php $this->renderPartial('summary', array('model' => $model)) ?>
 <?php endforeach; ?>
 
+<?php if (empty($models)): ?>
+ No questions available yet.
+<?php endif; ?>
+
 <?php $this->widget('LinkPager', array(
   'pages' => $pages,
   'cssFile' => false,
