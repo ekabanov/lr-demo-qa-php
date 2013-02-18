@@ -38,7 +38,8 @@ class QuestionsController extends Controller
     ));
   }
 
-  public function actionAccept() {
+  public function actionAccept()
+  {
     $answer = Answer::model()->findByPk($_REQUEST['id']);
 
     if ($answer == null)
@@ -55,7 +56,8 @@ class QuestionsController extends Controller
     $this->redirect(array('questions/read', 'id' => $question->id, 'title' => $question->title));
   }
 
-  public function actionSearch() {
+  public function actionSearch()
+  {
     $criteria = new CDbCriteria;
     $criteria->order = 'created_at DESC';
     $criteria->addSearchCondition('title', $_REQUEST['q']);
@@ -81,7 +83,10 @@ class QuestionsController extends Controller
     if ($model == null)
       throw new CHttpException(404, "Question not found.");
 
-    $hasAnswered = Answer::model()->countByAttributes(array('question_id' => $model->id, 'user_id' => Yii::app()->user->id));
+    if (Yii::app()->user->isGuest)
+      $hasAnswered = false;
+    else
+      $hasAnswered = Answer::model()->countByAttributes(array('question_id' => $model->id, 'user_id' => Yii::app()->user->id));
 
     $this->render('read', array('model' => $model, 'hasAnswered' => $hasAnswered, 'answer' => new Answer));
   }
@@ -104,7 +109,8 @@ class QuestionsController extends Controller
     $this->render('ask', array('model' => $model));
   }
 
-  public function actionRevise() {
+  public function actionRevise()
+  {
     $model = Question::model()->findByPk($_REQUEST['id']);
 
     if ($model == null)
@@ -135,7 +141,7 @@ class QuestionsController extends Controller
   {
     return array(
       array('deny',
-        'actions' => array('ask'),
+        'actions' => array('ask', 'revise', 'accept'),
         'users' => array('?'),
       ),
     );

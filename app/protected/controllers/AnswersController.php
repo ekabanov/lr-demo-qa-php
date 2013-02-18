@@ -51,4 +51,21 @@ class AnswersController extends Controller
     $this->render('revise', array('model' => $model));
   }
 
+  public function filters()
+  {
+    return array(
+      'accessControl',
+    );
+  }
+
+  public function accessRules()
+  {
+    return array(
+      array('deny',
+        'actions' => array('submit', 'revise'),
+        'users' => array('?'),
+      ),
+    );
+  }
+
 }
