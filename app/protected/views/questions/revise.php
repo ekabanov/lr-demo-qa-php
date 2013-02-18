@@ -23,7 +23,8 @@
 </div>
 <div class="control-group">
   <div class="controls">
-    <button type="submit" class="btn">Post your question</button>
+    <button type="submit" class="btn">Save revision</button>
+    <?php echo CHtml::link('Cancel', array('questions/read', 'id' => $model->id, 'title' => $model->title)) ?>
   </div>
 </div>
 <?php echo CHtml::endForm() ?>

@@ -1,13 +1,9 @@
-<?php echo CHtml::beginForm('', 'POST', array('class' => 'form form-horizontal')) ?>
+<h1><?php echo $model->question->title ?></h1>
+<?php echo CHtml::beginForm(array('answers/revise', 'id' => $model->id), 'POST', array('class' => 'form form-horizontal')) ?>
+<legend>Answer</legend>
 
 <?php echo CHtml::errorSummary($model); ?>
 
-<div class="control-group">
-  <?php echo CHtml::activeLabel($model, 'title', array('class' => 'control-label')) ?>
-  <div class="controls">
-    <?php echo CHtml::activeTextField($model, 'title', array('class' => 'input-xxlarge', 'placeholder' => "What's your question?")) ?>
-  </div>
-</div>
 <div class="control-group">
   <div class="controls">
     <div class="wmd-panel">
@@ -23,9 +19,9 @@
 </div>
 <div class="control-group">
   <div class="controls">
-    <button type="submit" class="btn">Post your question</button>
+    <button type="submit" class="btn">Save revision</button>
+    <?php echo CHtml::link('Cancel', array('questions/read', 'id' => $model->question->id, 'title' => $model->question->title)) ?>
   </div>
-</div>
 <?php echo CHtml::endForm() ?>
 
 <?php $this->widget('MarkdownScripts') ?>

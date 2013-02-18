@@ -1,6 +1,6 @@
 <?php
 
-class AuthenticationController extends CController
+class AuthenticationController extends Controller
 {
 
   public function actionLogin()
@@ -15,6 +15,7 @@ class AuthenticationController extends CController
         $model->save(false);
 
         Yii::app()->user->login(new UserIdentity($model->id), 0);
+
         $this->redirect(Yii::app()->user->returnUrl);
       }
 

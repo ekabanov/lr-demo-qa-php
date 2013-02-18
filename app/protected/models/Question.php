@@ -31,4 +31,35 @@ class Question extends CActiveRecord
     );
   }
 
+  public function scopes()
+  {
+    return array(
+      'no-answers' => array(
+        'select' => 't.*, COUNT(answer.id) AS answersCount',
+        'join' => 'LEFT JOIN answers answer ON answer.question_id = t.id',
+        'group' => 't.id',
+        'having' => 'answersCount = 0'
+      ),
+      'unanswered' => array(
+        'condition' => 't.answer_id IS NULL',
+      ),
+    );
+  }
+
+  public function getAnswers() {
+    if (!$this->answer_id)
+      return $this->answers;
+
+    $answers = $this->answers;
+
+    foreach ($answers as $key => $answer) {
+      if ($answer->id == $this->answer_id) {
+        unset($answers[$key]);
+        $answers = array($answer) + $answers;
+        break;
+      }
+    }
+    return $answers;
+  }
+
 }

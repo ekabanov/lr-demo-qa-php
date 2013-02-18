@@ -3,6 +3,7 @@
     <?php echo CHtml::beginForm(); ?>
     <fieldset>
       <legend>Log in</legend>
+
       <p>Please log in to continue.</p>
 
       <?php echo CHtml::errorSummary($form); ?>
@@ -25,6 +26,7 @@
     <?php echo CHtml::beginForm(); ?>
     <fieldset>
       <legend>New to Rebel Answers?</legend>
+
       <p>A Rebel Answers account is required to continue.</p>
 
       <?php echo CHtml::errorSummary($model); ?>
@@ -43,7 +45,6 @@
       <?php echo CHtml::passwordfield('verifyPassword') ?> <br/>
 
       <button type="submit" class="btn">Sign me up!</button>
-
     </fieldset>
     <?php echo CHtml::endForm(); ?>
   </div>
@@ -51,6 +52,7 @@
     <form>
       <fieldset>
         <legend>Log in with Facebook</legend>
+
         <p>It's fast and easy.</p>
 
         <a id="fb-connect" href="#">Log in with Facebook</a>
