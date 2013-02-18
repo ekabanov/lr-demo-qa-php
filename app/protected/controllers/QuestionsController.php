@@ -116,7 +116,6 @@ class QuestionsController extends Controller
     if (isset($_POST['Question'])) {
       $model->attributes = $_POST['Question'];
       if ($model->validate()) {
-        $model->user_id = Yii::app()->user->id;
         $model->save(false);
         $this->redirect(array('questions/read', 'id' => $model->id, 'title' => $model->title));
       }
