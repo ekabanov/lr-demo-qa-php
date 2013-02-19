@@ -51,13 +51,6 @@ return array(
         'jquery.min.js' => false
       )
     ),
-    'db' => array(
-      'connectionString' => 'mysql:host=localhost;dbname=qa',
-      'emulatePrepare' => true,
-      'username' => 'root',
-      'password' => '',
-      'charset' => 'utf8',
-    ),
     'log' => array(
       'class' => 'CLogRouter',
       'routes' => array(
@@ -69,8 +62,4 @@ return array(
     ),
   ),
 
-  'params' => array(
-    'fbAppId' => '486587731404052',
-    'fbAppSecret' => '6869727b1e3728132bfda0448821f8e7',
-  ),
 );
