@@ -13,7 +13,7 @@
   </div>
   <div class="span11">
     <?php echo MarkdownScripts::encode($model->content) ?><br/>
-    Asked by <?php echo $model->user->fullName ?>&nbsp;
+    Asked by <?php echo CHtml::link($model->user->fullName, array('profile/read', 'id' => $model->user->id, 'name' => $model->user->fullName)) ?>&nbsp;
     <?php echo Yii::app()->format->timeago($model->created_at) ?>
 
     <?php if ($model->user_id == Yii::app()->user->id): ?>
@@ -46,7 +46,7 @@
     </div>
     <div class="span11">
       <?php echo Markdown($a->content) ?><br/>
-      Answered by <?php echo $a->user->fullName ?>&nbsp;
+      Answered by <?php echo CHtml::link($a->user->fullName, array('profile/read', 'id' => $a->user->id, 'name' => $a->user->fullName)) ?>&nbsp;
       <?php echo Yii::app()->format->timeago($a->created_at) ?>
 
       <?php if ($model->user_id == Yii::app()->user->id && $model->answer_id != $a->id): ?>

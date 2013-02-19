@@ -22,6 +22,8 @@ return array(
       'urlFormat' => 'path',
       'showScriptName' => false,
       'rules' => array(
+        'profile/<id:\d+>/<name>' => array('profile/read'),
+        'profile/<id:\d+>/<name>/questions' => array('profile/questions'),
         'questions/<id:\d+>/vote' => array('votes/voteQuestion'),
         'questions/<id:\d+>/answer/vote' => array('votes/voteAnswer'),
 

@@ -26,7 +26,7 @@
                         <?php if (Yii::app()->user->isGuest): ?>
                             <li><?php echo CHtml::link('Log in', array('authentication/login')) ?></li>
                         <?php else: ?>
-                            <li class="disabled"><a><?php echo Yii::app()->user->fullName ?></a></li>
+                            <li><?php echo CHtml::link(Yii::app()->user->fullName, array('profile/read', 'id' => Yii::app()->user->id, 'name' => Yii::app()->user->fullName)) ?></a></li>
                             <li><?php echo CHtml::link('Log out', array('authentication/logout')) ?></li>
                         <?php endif; ?>
                     </ul>
