@@ -11,6 +11,7 @@ return array(
     'application.models.*',
     'application.components.*',
     'ext.mail.YiiMailMessage',
+    'ext.php-webdriver.*'
   ),
 
   'components' => array(

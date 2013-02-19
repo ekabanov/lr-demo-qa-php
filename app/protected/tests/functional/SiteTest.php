@@ -4,8 +4,10 @@ class SiteTest extends WebTestCase
 {
 	public function testIndex()
 	{
-		$this->open('');
-    $this->assertTitle("Rebel Answers");
+    $session = $this->session;
+		$session->open($this->baseUrl);
+    $title = $session->element("xpath", "//title")->text();
+    $this->assertEquals($title, "Rebel Answers");
 	}
 
 }
