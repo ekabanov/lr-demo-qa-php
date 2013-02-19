@@ -11,15 +11,26 @@ define('TEST_BASE_URL','http://localhost/');
  * In this class, we set the base URL for the test application.
  * We also provide some common methods to be used by concrete test classes.
  */
-class WebTestCase extends CWebTestCase
+class WebTestCase extends CTestCase
 {
-	/**
-	 * Sets up before each test method runs.
-	 * This mainly sets the base URL for the test application.
-	 */
-	protected function setUp()
-	{
-		parent::setUp();
-		$this->setBrowserUrl(TEST_BASE_URL);
-	}
+
+  public $baseUrl = TEST_BASE_URL;
+  /**
+   * @var WebDriverSession
+   */
+  protected $session;
+
+  protected function setUp()
+  {
+    $web_driver = new WebDriver();
+    $this->session = $web_driver->session('chrome');
+
+  }
+
+  protected function tearDown()
+  {
+    $this->session->close();
+    unset($this->session);
+    parent::tearDown();
+  }
 }

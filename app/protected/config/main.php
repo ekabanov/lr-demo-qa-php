@@ -10,6 +10,7 @@ return array(
   'import' => array(
     'application.models.*',
     'application.components.*',
+    'ext.php-webdriver.*'
   ),
 
   'components' => array(
