@@ -28,6 +28,9 @@ class Question extends CActiveRecord
       'answersCount' => array(
         self::STAT, 'Answer', 'question_id'
       ),
+      'votesCount' => array(self::STAT, 'Vote', 'parent_id',
+        'select' => 'SUM(type)',
+        'condition' => 'parent_type=' . Vote::TYPE_QUESTION),
     );
   }
 
@@ -46,7 +49,9 @@ class Question extends CActiveRecord
     );
   }
 
-  public function getAnswers() {
+
+  public function getAnswers()
+  {
     if (!$this->answer_id)
       return $this->answers;
 

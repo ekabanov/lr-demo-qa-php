@@ -24,6 +24,9 @@ class Answer extends CActiveRecord
     return array(
       'question' => array(self::BELONGS_TO, 'Question', 'question_id'),
       'user' => array(self::BELONGS_TO, 'User', 'user_id'),
+      'votesCount' => array(self::STAT, 'Vote', 'parent_id',
+        'select' => 'SUM(type)',
+        'condition' => 'parent_type=' . Vote::TYPE_ANSWER),
     );
   }
 
