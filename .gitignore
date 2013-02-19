@@ -1,4 +1,4 @@
 .idea
 *.iml
 liquibase.properties
-params-local.php
+app/protected/config/params-local.php
