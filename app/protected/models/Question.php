@@ -22,6 +22,7 @@ class Question extends CActiveRecord
   public function relations()
   {
     return array(
+      'comments' => array(self::HAS_MANY, 'Comment', 'parent_id', 'condition' => 'parent_type='.Vote::TYPE_QUESTION),
       'answer' => array(self::BELONGS_TO, 'Answer', 'answer_id'),
       'answers' => array(self::HAS_MANY, 'Answer', 'question_id'),
       'user' => array(self::BELONGS_TO, 'User', 'user_id'),

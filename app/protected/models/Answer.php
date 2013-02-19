@@ -41,6 +41,7 @@ class Answer extends CActiveRecord
   public function relations()
   {
     return array(
+      'comments' => array(self::HAS_MANY, 'Comment', 'parent_id', 'condition' => 'parent_type='.Vote::TYPE_ANSWER),
       'question' => array(self::BELONGS_TO, 'Question', 'question_id'),
       'user' => array(self::BELONGS_TO, 'User', 'user_id'),
       'votesCount' => array(self::STAT, 'Vote', 'parent_id',

@@ -15,4 +15,35 @@ $(document).ready(function () {
         });
         return false;
     });
-});
+
+    $('.add-comment').on('click', function (e) {
+        var el = $(this);
+        e.preventDefault();
+        e.stopPropagation();
+        el.hide();
+        var template = $('#comment-template').html();
+        el.parent().append(template);
+        return false;
+    });
+
+    $('body').on('submit', '.comment-form', function () {
+        var el = $(this);
+        var a =  el.parent().find('.add-comment');
+        $.ajax({
+            url: a.attr('href'),
+            data: {
+                'comment': el.find('textarea').val()
+            },
+            dataType: 'json'
+        }).done(function (response) {
+                if (response) {
+                    a.show();
+                    a.closest('.row').find('.comments').append(response.content);
+                    el.remove();
+                }
+            });
+
+        return false;
+    });
+})
+;
