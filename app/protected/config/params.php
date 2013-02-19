@@ -62,20 +62,6 @@ return array(
       'logging' => true,
       'dryRun' => false,
       'transportType' => 'smtp',
-      'transportOptions' => array(
-        	'host' => 'smtp.gmail.com',
-        	'username' => 'mirko.eesti',
-          'password' => 'Joonas18',
-          'port' => '465',
-          'encryption' => 'tls'
-      )
-    ),
-    'db' => array(
-      'connectionString' => 'mysql:host=localhost;dbname=qa',
-      'emulatePrepare' => true,
-      'username' => 'root',
-      'password' => '',
-      'charset' => 'utf8',
     ),
     'log' => array(
       'class' => 'CLogRouter',
@@ -88,8 +74,4 @@ return array(
     ),
   ),
 
-  'params' => array(
-    'fbAppId' => '486587731404052',
-    'fbAppSecret' => '6869727b1e3728132bfda0448821f8e7',
-  ),
 );

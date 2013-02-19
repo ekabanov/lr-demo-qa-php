@@ -9,6 +9,15 @@ return array(
       'password' => '',
       'charset' => 'utf8',
     ),
+    'mail' => array(
+      'transportOptions' => array(
+        'host' => 'smtp.gmail.com',
+        'username' => '',
+        'password' => '',
+        'port' => '465',
+        'encryption' => 'tls'
+      )
+    ),
   ),
 
   'params' => array(
