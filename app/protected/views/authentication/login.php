@@ -18,6 +18,8 @@
         <?php echo CHtml::activeCheckBox($form, 'rememberMe'); ?> Remember me
       </label>
 
+      <?php echo CHtml::link('I forgot my password', array('authentication/passwordRecovery')) ?>
+
       <button type="submit" class="btn">Log me in!</button>
     </fieldset>
     <?php echo CHtml::endForm(); ?>

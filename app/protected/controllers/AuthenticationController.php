@@ -76,6 +76,34 @@ class AuthenticationController extends Controller
     $this->redirect(Yii::app()->homeUrl);
   }
 
+  public function actionPasswordRecovery()
+  {
+    $message = '';
+
+    if (isset($_POST['email'])) {
+      $user = User::model()->findByAttributes(array('email' => $_POST['email']));
+      if ($user) {
+        $message = new YiiMailMessage;
+        $length = 10;
+        $chars = array_merge(range(0, 9), range('a', 'z'), range('A', 'Z'));
+        shuffle($chars);
+        $password = implode(array_slice($chars, 0, $length));
+        $user->password = crypt($password, UserIdentity::blowfishSalt());
+        $user->save(false);
+        $message->setBody('Here is your new password: ' . $password, 'text/html');
+        $message->subject = 'Password Reset';
+        $message->addTo($_POST['email']);
+        $message->from = "noreply@zeroturnaround.com";
+        Yii::app()->mail->send($message);
+        $this->render('recoverySent');
+        return;
+      }
+      $message = 'User not registered with this e-mail.';
+    }
+
+    $this->render('recovery', array('message' => $message));
+  }
+
   public function filters()
   {
     return array(
