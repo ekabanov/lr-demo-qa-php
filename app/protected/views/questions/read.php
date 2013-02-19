@@ -1,7 +1,13 @@
 <h3><?php echo $model->title ?></h3>
 <div class="row">
   <div class="span1">
-    <?php echo $model->votesCount ?>
+    <?php if (!Yii::app()->user->isGuest): ?>
+    <span class="label vote-up"><a href="<?php echo $this->createUrl('votes/voteQuestion', array('id' => $model->id, 'type' => 1)) ?>">Up</a></span>
+    <?php endif; ?>
+    <span class="votes"><?php echo $model->votesCount ?></span>
+    <?php if (!Yii::app()->user->isGuest): ?>
+    <span class="label vote-down"><a href="<?php echo $this->createUrl('votes/voteQuestion', array('id' => $model->id, 'type' => -1)) ?>">Down</a></span>
+    <?php endif; ?>
   </div>
   <div class="span11">
     <?php echo MarkdownScripts::encode($model->content) ?><br/>
@@ -18,7 +24,13 @@
 <?php foreach ($model->getAnswers() as $a): ?>
   <div class="row">
     <div class="span1">
-      <?php echo $model->votesCount ?>
+      <?php if (!Yii::app()->user->isGuest): ?>
+      <span class="label vote-up"><a href="<?php echo $this->createUrl('votes/voteAnswer', array('id' => $a->id, 'type' => 1)) ?>">Up</a></span>
+      <?php endif; ?>
+      <span class="votes"><?php echo $a->votesCount ?></span>
+      <?php if (!Yii::app()->user->isGuest): ?>
+      <span class="label vote-down"><a href="<?php echo $this->createUrl('votes/voteAnswer', array('id' => $a->id, 'type' => -1)) ?>">Down</a></span>
+      <?php endif; ?>
     </div>
     <div class="span11">
       <?php echo Markdown($a->content) ?><br/>

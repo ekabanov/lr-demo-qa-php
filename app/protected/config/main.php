@@ -22,6 +22,9 @@ return array(
       'urlFormat' => 'path',
       'showScriptName' => false,
       'rules' => array(
+        'questions/<id:\d+>/vote' => array('votes/voteQuestion'),
+        'questions/<id:\d+>/answer/vote' => array('votes/voteAnswer'),
+
         'questions/<id:\d+>/<title>' => array('questions/read'),
         'questions/<id:\d+>/revise' => array('questions/edit'),
         'questions/<id:\d+>/answer/submit' => array('answers/submit'),

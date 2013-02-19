@@ -7,6 +7,7 @@
     <link href="<?php echo Yii::app()->baseUrl ?>/css/main.css" rel="stylesheet">
     <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
+  <script src="<?php echo Yii::app()->baseUrl ?>/js/main.js"></script>
 </head>
 <body>
 
