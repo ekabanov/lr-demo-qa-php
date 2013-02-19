@@ -19,6 +19,25 @@ class Answer extends CActiveRecord
     );
   }
 
+  public function hasDownvoted() {
+    return Vote::model()->countByAttributes(array(
+      'parent_id' => $this->id,
+      'parent_type' => Vote::TYPE_ANSWER,
+      'user_id' => Yii::app()->user->id,
+      'type' => -1
+    ));
+  }
+
+  public function hasUpvoted() {
+    return Vote::model()->countByAttributes(array(
+      'parent_id' => $this->id,
+      'parent_type' => Vote::TYPE_ANSWER,
+      'user_id' => Yii::app()->user->id,
+      'type' => 1
+    ));
+  }
+
+
   public function relations()
   {
     return array(

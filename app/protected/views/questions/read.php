@@ -2,11 +2,11 @@
 <div class="row">
   <div class="span1">
     <?php if (!Yii::app()->user->isGuest): ?>
-    <span class="label vote-up"><a href="<?php echo $this->createUrl('votes/voteQuestion', array('id' => $model->id, 'type' => 1)) ?>">Up</a></span>
+    <span class="label vote-up<?php echo $model->hasUpvoted() ? ' label-success' : ''?>"><a href="<?php echo $this->createUrl('votes/voteQuestion', array('id' => $model->id, 'type' => 1)) ?>">Up</a></span>
     <?php endif; ?>
     <span class="votes"><?php echo $model->votesCount ?></span>
     <?php if (!Yii::app()->user->isGuest): ?>
-    <span class="label vote-down"><a href="<?php echo $this->createUrl('votes/voteQuestion', array('id' => $model->id, 'type' => -1)) ?>">Down</a></span>
+    <span class="label vote-down<?php echo $model->hasDownvoted() ? ' label-inverse' : ''?>"><a href="<?php echo $this->createUrl('votes/voteQuestion', array('id' => $model->id, 'type' => -1)) ?>">Down</a></span>
     <?php endif; ?>
   </div>
   <div class="span11">
@@ -25,11 +25,11 @@
   <div class="row">
     <div class="span1">
       <?php if (!Yii::app()->user->isGuest): ?>
-      <span class="label vote-up"><a href="<?php echo $this->createUrl('votes/voteAnswer', array('id' => $a->id, 'type' => 1)) ?>">Up</a></span>
+      <span class="label vote-up<?php echo $a->hasUpvoted() ? ' label-success' : ''?>"><a href="<?php echo $this->createUrl('votes/voteAnswer', array('id' => $a->id, 'type' => 1)) ?>">Up</a></span>
       <?php endif; ?>
       <span class="votes"><?php echo $a->votesCount ?></span>
       <?php if (!Yii::app()->user->isGuest): ?>
-      <span class="label vote-down"><a href="<?php echo $this->createUrl('votes/voteAnswer', array('id' => $a->id, 'type' => -1)) ?>">Down</a></span>
+      <span class="label vote-down<?php echo $a->hasDownvoted() ? ' label-inverse' : ''?>"><a href="<?php echo $this->createUrl('votes/voteAnswer', array('id' => $a->id, 'type' => -1)) ?>">Down</a></span>
       <?php endif; ?>
     </div>
     <div class="span11">
