@@ -7,6 +7,8 @@ class QuestionsController extends Controller
 
   public function actionList()
   {
+    throw new CHttpException(500, "World ended with 2012.");
+
     $this->section = 'questions';
     $this->subSection = 'newest';
 
