@@ -6,6 +6,6 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
-    <include file="app/protected/migrations/1.0.xml"/>
+    <include file="liverebel/db/1.0.xml"/>
 
 </databaseChangeLog>
