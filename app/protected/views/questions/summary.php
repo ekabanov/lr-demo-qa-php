@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="span1">
+  <div class="span1 counters">
     <p class="text-center">
       <?php echo $model->answersCount ?><br/>
       answer(s)
