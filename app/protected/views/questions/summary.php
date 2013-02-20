@@ -1,10 +1,10 @@
 <div class="row">
-  <div class="span2">
-    <p class="text-center">
+  <div class="span2 counters">
+    <p class="text-center counter-answers">
       <?php echo $model->answersCount ?><br/>
       answer(s)
     </p>
-    <p class="text-center">
+    <p class="text-center counter-votes">
       <?php echo $model->votesCount ?><br/>
       vote(s)
     </p>

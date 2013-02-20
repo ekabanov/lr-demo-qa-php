@@ -2,10 +2,10 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
-a {
+a, a:active {
 	color: #82AC2A;
 }
-a:hover {
+a:hover, a:focus {
 	color: #92C12F;
 }
 
@@ -38,13 +38,18 @@ h1 + .nav-pills {
 	text-align: right;
 }
 
-.content > .row > :first-child {
+.content > .row .counters {
 	margin-left: 0;
 	padding: 1.5em 0;
 }
 
-.content > .row > :first-child :first-line{
+.counters :first-line{
 	font-size: 150%;
+}
+
+.counters > p {
+	display: inline-block;
+	width: 48%;
 }
 
 .navbar {
