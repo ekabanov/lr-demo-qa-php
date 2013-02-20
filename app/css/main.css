@@ -28,7 +28,6 @@ h1 + .nav-pills {
 }
 
 .content > .row {
-	border-top: 1px solid #ECECEC;
 	margin-left: 0;
 }
 
@@ -98,6 +97,34 @@ h1 + .nav-pills {
 .nav > li > a:hover, .nav > li > a:focus {
 	background: #9FCF3A;
 	color: white;
+}
+
+.row > [class*=span]:first-child {
+	margin-left: 0;
+}
+
+.voting {
+	text-align: center;
+}
+
+.voting a {
+	color: white;
+	text-decoration: none !important;
+}
+
+.voting > span {
+	display: inline-block;
+	font-size: 150%;
+}
+
+.voting .votes {
+	display: block;
+	margin: 0.3em;
+}
+
+.voting .label {
+	line-height: 0.8em;
+	width: 0.8em;
 }
 
 blockquote {
