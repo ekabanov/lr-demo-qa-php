@@ -1,20 +1,24 @@
 <h3><?php echo $model->title ?></h3>
-<div class="row">
-  <div class="span1">
+<div class="row question">
+  <div class="span1 voting">
     <?php if (!Yii::app()->user->isGuest): ?>
       <span class="label vote-up<?php echo $model->hasUpvoted() ? ' label-success' : ''?>"><a
-            href="<?php echo $this->createUrl('votes/voteQuestion', array('id' => $model->id, 'type' => 1)) ?>">Up</a></span>
+            href="<?php echo $this->createUrl('votes/voteQuestion', array('id' => $model->id, 'type' => 1)) ?>">+</a></span>
     <?php endif; ?>
     <span class="votes"><?php echo $model->votesCount ?></span>
     <?php if (!Yii::app()->user->isGuest): ?>
       <span class="label vote-down<?php echo $model->hasDownvoted() ? ' label-inverse' : ''?>"><a
-            href="<?php echo $this->createUrl('votes/voteQuestion', array('id' => $model->id, 'type' => -1)) ?>">Down</a></span>
+            href="<?php echo $this->createUrl('votes/voteQuestion', array('id' => $model->id, 'type' => -1)) ?>">-</a></span>
     <?php endif; ?>
   </div>
   <div class="span11">
-    <?php echo MarkdownScripts::encode($model->content) ?><br/>
-    Asked by <?php echo $model->user->fullName ?>&nbsp;
-    <?php echo Yii::app()->format->timeago($model->created_at) ?>
+    <div class="question">
+		<?php echo MarkdownScripts::encode($model->content) ?>
+	</div>
+	<div class="note">
+		Asked by <?php echo $model->user->fullName ?>&nbsp;
+		<?php echo Yii::app()->format->timeago($model->created_at) ?>
+	</div>
 
     <?php if ($model->user_id == Yii::app()->user->id): ?>
       <?php echo CHtml::link('Revise', array('questions/revise', 'id' => $model->id)) ?>
@@ -32,22 +36,26 @@
 <hr/>
 
 <?php foreach ($model->getAnswers() as $a): ?>
-  <div class="row">
-    <div class="span1">
+  <div class="row answer">
+    <div class="span1 voting">
       <?php if (!Yii::app()->user->isGuest): ?>
         <span class="label vote-up<?php echo $a->hasUpvoted() ? ' label-success' : ''?>"><a
-              href="<?php echo $this->createUrl('votes/voteAnswer', array('id' => $a->id, 'type' => 1)) ?>">Up</a></span>
+              href="<?php echo $this->createUrl('votes/voteAnswer', array('id' => $a->id, 'type' => 1)) ?>">+</a></span>
       <?php endif; ?>
       <span class="votes"><?php echo $a->votesCount ?></span>
       <?php if (!Yii::app()->user->isGuest): ?>
         <span class="label vote-down<?php echo $a->hasDownvoted() ? ' label-inverse' : ''?>"><a
-              href="<?php echo $this->createUrl('votes/voteAnswer', array('id' => $a->id, 'type' => -1)) ?>">Down</a></span>
+              href="<?php echo $this->createUrl('votes/voteAnswer', array('id' => $a->id, 'type' => -1)) ?>">-</a></span>
       <?php endif; ?>
     </div>
     <div class="span11">
-      <?php echo Markdown($a->content) ?><br/>
-      Answered by <?php echo $a->user->fullName ?>&nbsp;
-      <?php echo Yii::app()->format->timeago($a->created_at) ?>
+		<div>
+			<?php echo Markdown($a->content) ?>
+		</div>
+		<div class="note">
+			Answered by <?php echo $a->user->fullName ?>&nbsp;
+			<?php echo Yii::app()->format->timeago($a->created_at) ?>
+		</div>
 
       <?php if ($model->user_id == Yii::app()->user->id && $model->answer_id != $a->id): ?>
         <?php echo CHtml::link('Accept as answer', array('questions/accept', 'id' => $a->id)) ?>
