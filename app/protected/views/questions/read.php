@@ -20,16 +20,19 @@
 		<?php echo Yii::app()->format->timeago($model->created_at) ?>
 	</div>
 
-    <?php if ($model->user_id == Yii::app()->user->id): ?>
-      <?php echo CHtml::link('Revise', array('questions/revise', 'id' => $model->id)) ?>
-    <?php endif; ?>
+	<?php if ($model->user_id == Yii::app()->user->id): ?>
+		<div class="note">
+			<?php echo CHtml::link('Revise', array('questions/revise', 'id' => $model->id), array('class'=>'btn')) ?>
+		</div>
+	<?php endif; ?>
+
     <div class="comments">
       <?php foreach ($model->comments as $comment): ?>
         <?php $this->renderPartial('/comments/comment', array('model' => $comment)) ?>
       <?php endforeach; ?>
     </div>
     <div class="post-comment">
-      <?php echo CHtml::link('add comment', array('comments/post', 'id' => $model->id, 'type' => Vote::TYPE_QUESTION), array('class' => 'add-comment')) ?>
+      <?php echo CHtml::link('add comment', array('comments/post', 'id' => $model->id, 'type' => Vote::TYPE_QUESTION), array('class' => 'add-comment btn')) ?>
     </div>
   </div>
 </div>
@@ -37,6 +40,7 @@
 
 <?php foreach ($model->getAnswers() as $a): ?>
   <div class="row answer">
+
     <div class="span1 voting">
       <?php if (!Yii::app()->user->isGuest): ?>
         <span class="label vote-up<?php echo $a->hasUpvoted() ? ' label-success' : ''?>"><a
@@ -49,6 +53,9 @@
       <?php endif; ?>
     </div>
     <div class="span11">
+		<?php if ($model->answer_id == $a->id): ?>
+			<p class="label label-success">Accepted answer</p>
+		<?php endif; ?>
 		<div>
 			<?php echo Markdown($a->content) ?>
 		</div>
@@ -57,24 +64,23 @@
 			<?php echo Yii::app()->format->timeago($a->created_at) ?>
 		</div>
 
-      <?php if ($model->user_id == Yii::app()->user->id && $model->answer_id != $a->id): ?>
-        <?php echo CHtml::link('Accept as answer', array('questions/accept', 'id' => $a->id)) ?>
-      <?php endif; ?>
+		<div class="note">
+			<?php if ($model->user_id == Yii::app()->user->id && $model->answer_id != $a->id): ?>
+			  <?php echo CHtml::link('Accept as answer', array('questions/accept', 'id' => $a->id), array('class'=>'btn')) ?>
+			<?php endif; ?>
 
-      <?php if ($model->answer_id == $a->id): ?>
-        <span class="label label-success">Accepted answer</span>
-      <?php endif; ?>
+			<?php if ($a->user_id == Yii::app()->user->id): ?>
+			  <?php echo CHtml::link('Revise', array('answers/revise', 'id' => $model->id), array('class'=>'btn')) ?>
+			<?php endif; ?>
+		</div>
 
-      <?php if ($a->user_id == Yii::app()->user->id): ?>
-        <?php echo CHtml::link('Revise', array('answers/revise', 'id' => $model->id)) ?>
-      <?php endif; ?>
       <div class="comments">
         <?php foreach ($a->comments as $comment): ?>
           <?php $this->renderPartial('/comments/comment', array('model' => $comment)) ?>
         <?php endforeach; ?>
       </div>
       <div class="post-comment">
-        <?php echo CHtml::link('add comment', array('comments/post', 'id' => $a->id, 'type' => Vote::TYPE_ANSWER), array('class' => 'add-comment')) ?>
+        <?php echo CHtml::link('add comment', array('comments/post', 'id' => $a->id, 'type' => Vote::TYPE_ANSWER), array('class' => 'add-comment btn')) ?>
       </div>
     </div>
   </div>

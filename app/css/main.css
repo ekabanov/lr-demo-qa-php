@@ -22,6 +22,20 @@ h1 + .nav-pills {
 	margin-top: -4.5em;
 }
 
+.comments {
+	background: #FAFAFA;
+	font-size: 90%;
+	margin: 1em 0;
+}
+
+.comments > div {
+	padding: 1em;
+}
+
+.comments > div + hr {
+	margin: 0;
+}
+
 .content {
 	box-shadow: 0 0 0 1em white, 0 -0.5em 3em #AAA;
 	position: relative;
