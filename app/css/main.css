@@ -28,7 +28,6 @@ h1 + .nav-pills {
 }
 
 .content > .row {
-	border-top: 1px solid #ECECEC;
 	margin-left: 0;
 }
 
@@ -93,6 +92,10 @@ h1 + .nav-pills {
 .nav > li > a:hover, .nav > li > a:focus {
 	background: #9FCF3A;
 	color: white;
+}
+
+.row > [class*="span"]:first-child {
+	margin-left: 0;
 }
 
 blockquote {
