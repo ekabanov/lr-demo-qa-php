@@ -1,4 +1,4 @@
-<div class="row">
+<div class="zebra row">
   <div class="span2 counters">
     <p class="text-center counter-answers">
       <?php echo $model->answersCount ?><br/>
