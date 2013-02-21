@@ -11,8 +11,8 @@
 
 <?php foreach ($answers as $answer): ?>
 <div class="zebra row question">
-	<div class="span1">
-		<?php echo $answer->votesCount ?> vote(s)
+	<div class="span1 text-center">
+		<span class="label"><?php echo $answer->votesCount ?></span>
 	</div>
 	<div class="span11">
 		<?php echo CHtml::link($answer->question->title, array('questions/read', 'id' => $answer->question->id, 'title' => $answer->question->title)) ?>
