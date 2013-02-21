@@ -10,8 +10,12 @@
 </ul>
 
 <?php foreach ($questions as $question): ?>
-  <?php echo $question->votesCount ?>
-  <?php echo CHtml::link($question->title, array('questions/read', 'id' => $question->id, 'title' => $question->title)) ?>
-  <br/>
-
+<div class="zebra row question">
+	<div class="span1">
+		<?php echo $question->votesCount ?> vote(s)
+	</div>
+	<div class="span11">
+		<?php echo CHtml::link($question->title, array('questions/read', 'id' => $question->id, 'title' => $question->title)) ?>
+	</div>
+</div>
 <?php endforeach; ?>
